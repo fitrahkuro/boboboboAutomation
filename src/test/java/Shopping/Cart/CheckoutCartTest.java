@@ -1,6 +1,6 @@
 package Shopping.Cart;
 
-
+import Shopping.Cart.LoginCheckoutPage;
 import Shopping.NonEventPage;
 import UserManagement.Auth.Homepage;
 import UserManagement.Auth.LoginPage;
@@ -31,7 +31,7 @@ public class CheckoutCartTest {
     String brand;
     String product;
     int price;
-    LoginPage loginPage;
+    LoginCheckoutPage loginPage;
 
     @Before
     public void setUp() {
@@ -39,7 +39,7 @@ public class CheckoutCartTest {
         homepage = PageFactory.initElements(driver, Homepage.class);
         searching = PageFactory.initElements(driver, NonEventPage.class);
         item = PageFactory.initElements(driver, ItemDetailsPage.class);
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
 
         ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women", "men", "living"));
         categoryIdx = (int) Math.floor(Math.random() * arrCategory.size());
@@ -85,7 +85,6 @@ public class CheckoutCartTest {
             }
         }
 
-
         // check item
         try {
             item.isItemMatched(brand, product, price);
@@ -95,7 +94,33 @@ public class CheckoutCartTest {
         }
         property = item.productProperty();
 
-// click add to cart button
+
+        // looping for property in each variety or property
+        for (int j = 1; j <= property; j++) {
+            item.propertyOption(j);
+        }
+        opt = item.optionAmount();
+
+        // get array size
+        item.getPropertyArr(property, opt);
+
+        // select index recursively
+        item.findProperty(0, 0);
+
+        // check if total price has been shown up
+        totalPrice = item.getTotalPrice();
+
+        //check if total price is matched
+        try {
+            if (item.getQuantity() * price == totalPrice) {
+                System.out.println("Price is matched");
+            }
+        } catch (Error e) {
+            System.out.println("Price is not matched");
+            System.exit(1);
+        }
+
+        // click add to cart button
         try {
             item.clickCartButton();
         } catch (Error e) {
@@ -109,16 +134,19 @@ public class CheckoutCartTest {
 
         // click cart button
         driver.findElement(By.id("cart-counter")).click();
-    }
-    // for login
-   // public void login(){
-    //homepage.clickLoginMenu();
-    //loginPage.doLogin("testing60@bobobobo.com","temanbobo");
-    //loginPage.clickLoginButton();
-    //System.out.println("Successfully login");
 
-    @After
-    public void tearDown() {
-
+        //click proceed to checkout
+        driver.findElement(By.id("cart-checkout-button")).click();
     }
-}
+
+        // for login
+    public void login() {
+        loginPage.doLogin("testing60@bobobobo.com", "temanbobo");
+        loginPage.clickLoginButton();
+        System.out.println("Successfully login");
+    }
+        @After
+        public void tearDown () {
+
+        }
+    }
