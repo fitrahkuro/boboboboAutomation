@@ -3,9 +3,12 @@ package Shopping.Cart;
 
 import Shopping.NonEventPage;
 import UserManagement.Auth.Homepage;
+import UserManagement.Auth.LoginPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -28,6 +31,7 @@ public class CheckoutCartTest {
     String brand;
     String product;
     int price;
+    LoginPage loginPage;
 
     @Before
     public void setUp() {
@@ -35,6 +39,7 @@ public class CheckoutCartTest {
         homepage = PageFactory.initElements(driver, Homepage.class);
         searching = PageFactory.initElements(driver, NonEventPage.class);
         item = PageFactory.initElements(driver, ItemDetailsPage.class);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
 
         ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women", "men", "living"));
         categoryIdx = (int) Math.floor(Math.random() * arrCategory.size());
@@ -84,8 +89,7 @@ public class CheckoutCartTest {
         // check item
         try {
             item.isItemMatched(brand, product, price);
-        }
-        catch (Error e) {
+        } catch (Error e) {
             System.out.println("Item's details are not matched");
             System.exit(1);
         }
@@ -94,8 +98,7 @@ public class CheckoutCartTest {
 // click add to cart button
         try {
             item.clickCartButton();
-        }
-        catch (Error e) {
+        } catch (Error e) {
             System.out.println("Add to Cart button can not be clicked");
             System.exit(1);
         }
@@ -104,7 +107,15 @@ public class CheckoutCartTest {
 
         System.out.println("Done");
 
+        // click cart button
+        driver.findElement(By.id("cart-counter")).click();
     }
+    // for login
+   // public void login(){
+    //homepage.clickLoginMenu();
+    //loginPage.doLogin("testing60@bobobobo.com","temanbobo");
+    //loginPage.clickLoginButton();
+    //System.out.println("Successfully login");
 
     @After
     public void tearDown() {
