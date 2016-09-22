@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * Created by fitrah on 9/21/2016.
@@ -48,6 +50,7 @@ public class LoginCheckoutTest {
         driver = new FirefoxDriver();
         loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
         checkoutShippingPage = PageFactory.initElements(driver, CheckoutShippingPage.class);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     }
 
     @Test
@@ -70,8 +73,12 @@ public class LoginCheckoutTest {
         }
         country = checkoutShippingPage.selectedCountry;
 
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
         // this method will click same as shipping address
         checkoutShippingPage.clickSameAs();
+
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         // this method will click next to review
         checkoutShippingPage.clickNextReview();

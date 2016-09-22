@@ -81,13 +81,17 @@ public class CheckoutShippingPage {
         addressDetail.sendKeys(address);
         addressCity.clear();
         addressCity.sendKeys(city);
+
         // select country
+        // still not working
         Select selectCountryIdx = new Select(addressCountry);
         selectCountryIdx.selectByIndex(country);
         selectedCountry = selectCountryIdx.getFirstSelectedOption().getText();
+
         // input postal code
         addressPostalCode.clear();
         addressPostalCode.sendKeys(postalCode);
+
         // input phone number and email address
         addressPhone.clear();
         addressPhone.sendKeys(phone);
@@ -97,7 +101,7 @@ public class CheckoutShippingPage {
     }
 
     // This method will add district if the country selected is Indonesia
-    // masih salah
+    // still not function
     public CheckoutShippingPage addDistrictByIdx(int district) {
         // select district
         Select selectDistrictIdx = new Select(addressDistrict);
@@ -107,24 +111,13 @@ public class CheckoutShippingPage {
     }
 
     // This method will add district if the country selected is non-Indonesia
-    //masih salah
+    //still not function
     public CheckoutShippingPage addDistrictByInput(String district) {
         addressDistrictInt.clear();
         addressDistrictInt.sendKeys(district);
         return this;
     }
 
-    // This method will click Same as Shipping Address
-    public CheckoutShippingPage clickSameAs() {
-        sameAs.click();
-        return this;
-    }
-
-    // This method will click Next To Review
-    public CheckoutShippingPage clickNextReview() {
-        nextReview.click();
-        return this;
-    }
 
     // This method will generate index number for country
     // return int
@@ -143,5 +136,17 @@ public class CheckoutShippingPage {
         List<WebElement> districtOption = driver.findElements(By.cssSelector("#phoenix_frontend_checkout_shipping_ShippingAddress_district>option"));
         randomIdx = (int) Math.ceil(Math.random()* (districtOption.size() - 1 ));
         return randomIdx;
+    }
+
+    // This method will click Same as Shipping Address
+    public CheckoutShippingPage clickSameAs() {
+        sameAs.click();
+        return this;
+    }
+
+    // This method will click Next To Review
+    public CheckoutShippingPage clickNextReview() {
+        nextReview.click();
+        return this;
     }
 }

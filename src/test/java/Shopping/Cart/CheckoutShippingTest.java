@@ -48,25 +48,13 @@ public class CheckoutShippingTest {
         driver = new FirefoxDriver();
         checkoutShippingPage = PageFactory.initElements(driver, CheckoutShippingPage.class);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        //loginElm = driver.findElement(By.className("login_menu")) != null;
-        //if (loginElm) {
-            //homepage.clickLoginMenu();
-            //loginPage.doLogin("testing60@bobobobo.com","temanbobo");
-            //loginPage.clickLoginButton();
-            //System.out.println("Successfully login");
-        }
-
+    }
 
     @Test
     public void checkoutShipping() throws Exception {
-        driver.get ("https://www.bobobobo.com/checkout/shipping");
+        driver.get("https://www.bobobobo.com/checkout/shipping");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        //rowPrev = checkoutShippingPage.rowAddress();
-        //columnPrev = checkoutShippingPage.columnAddress();
-        //shippingInfoPage.clickAddNewAddress();
 
-        //WebElement modal = (new WebDriverWait(driver, 5))
-                //.until(ExpectedConditions.presenceOfElementLocated(By.className("modal-header")));
 
         int countryIdx = checkoutShippingPage.randomCountry();
         checkoutShippingPage.addNewAddress(title, fname, lname, address, city, countryIdx, postalCode, phone, email);
@@ -74,8 +62,7 @@ public class CheckoutShippingTest {
             districtIdx = checkoutShippingPage.randomDistrict();
             checkoutShippingPage.addDistrictByIdx(districtIdx);
             district = checkoutShippingPage.selectedDistrict;
-        }
-        else {
+        } else {
             district = "Oklahoma";
             checkoutShippingPage.addDistrictByInput(district);
         }
@@ -85,86 +72,11 @@ public class CheckoutShippingTest {
         // Wait for loading page
         try {
             Thread.sleep(5000);
-        } catch(InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-
-        // Check if element has been added
-        //rowNext = checkoutShippingPage.rowAddress();
-        //columnNext = shippingInfoPage.columnAddress();
-        //try {
-            //assertTrue(rowNext == rowPrev + 1 || columnNext == columnPrev + 1);
-        //}
-        //catch (Error e) {
-            //System.out.println(verificationErrors.append(e.toString()));
-        //}
-
-        // Assert address title
-        //try {
-            //assertEquals(title, checkoutShippingPage.checkExistingAddress(rowPrev,columnPrev,1));
-        //}
-        //catch (Error e) {
-            //System.out.println(verificationErrors.append(e.toString()));
-            //System.exit(1);
-        //}
-
-        // Assert address user's name
-        //try {
-            //assertEquals(fname + " " + lname, shippingInfoPage.checkExistingAddress(rowPrev,columnPrev,2));
-        //}
-        //catch (Error e) {
-            //System.out.println(verificationErrors.append(e.toString()));
-            //System.exit(1);
-        //}
-
-        // Assert address detail
-        //try {
-            //assertEquals(address, shippingInfoPage.checkExistingAddress(rowPrev,columnPrev,3));
-        //}
-        //catch (Error e) {
-            //System.out.println(verificationErrors.append(e.toString()));
-            //System.exit(1);
-        //}
-
-        // Assert address city
-        //try {
-            //assertEquals(city + ", " + district, shippingInfoPage.checkExistingAddress(rowPrev,columnPrev,4));
-        //}
-        //catch (Error e) {
-            //System.out.println(verificationErrors.append(e.toString()));
-            //System.exit(1);
-        //}
-
-        //// Assert country
-        //try {
-            //assertEquals(country + ", " + postalCode, shippingInfoPage.checkExistingAddress(rowPrev,columnPrev,5));
-        //}
-        //catch (Error e) {
-            //System.out.println(verificationErrors.append(e.toString()));
-            //System.exit(1);
-        //}
-
-        // Assert user's phone number
-        //try {
-            //assertEquals("Phone: " + phone, shippingInfoPage.checkExistingAddress(rowPrev,columnPrev,6));
-        //}
-        //catch (Error e) {
-            //System.out.println(verificationErrors.append(e.toString()));
-            //System.exit(1);
-        //}
-
-        // Assert user's email
-        //try {
-            //assertEquals("Email: " + email, shippingInfoPage.checkExistingAddress(rowPrev,columnPrev,7));
-        //}
-        //catch (Error e) {
-            //System.out.println(verificationErrors.append(e.toString()));
-            //System.exit(1);
-        //}
-
-        //System.out.println("Address added");
     }
-    @After
-    public void tearDown(){
-}
-}
+        @After
+            public void tearDown (){
+        }
+    }
