@@ -19,7 +19,6 @@ public class LoginCheckoutTest {
         @Before
         public void setUp() {
             driver = new FirefoxDriver();
-
             loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
         }
 
