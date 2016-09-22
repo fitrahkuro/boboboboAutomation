@@ -1,5 +1,6 @@
 package Shopping.Cart;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -116,9 +117,9 @@ public class CheckoutShippingPage {
         return this;
     }
 
-    // This method will click next to review
+    // This method will click Next To Review
     public CheckoutShippingPage clickNextReview() {
-        sameAs.click();
+        nextReview.click();
         return this;
     }
 
