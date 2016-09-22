@@ -69,7 +69,11 @@ public class LoginCheckoutTest {
             checkoutShippingPage.addDistrictByInput(district);
         }
         country = checkoutShippingPage.selectedCountry;
+
+        // this method will click same as shipping address
         checkoutShippingPage.clickSameAs();
+
+        // this method will click next to review
         checkoutShippingPage.clickNextReview();
     }
 

@@ -56,7 +56,7 @@ public class CheckoutShippingPage {
     @FindBy(id = "phoenix_frontend_checkout_shipping_same_shipping")
     private WebElement sameAs;
 
-    @FindBy(name = "input[type='submit']")
+    @FindBy(css = "input[type='submit']")
     private WebElement nextReview;
 
     //This is constructor
@@ -97,6 +97,7 @@ public class CheckoutShippingPage {
     }
 
     // This method will add district if the country selected is Indonesia
+    // masih salah
     public CheckoutShippingPage addDistrictByIdx(int district) {
         // select district
         Select selectDistrictIdx = new Select(addressDistrict);
@@ -106,6 +107,7 @@ public class CheckoutShippingPage {
     }
 
     // This method will add district if the country selected is non-Indonesia
+    //masih salah
     public CheckoutShippingPage addDistrictByInput(String district) {
         addressDistrictInt.clear();
         addressDistrictInt.sendKeys(district);
