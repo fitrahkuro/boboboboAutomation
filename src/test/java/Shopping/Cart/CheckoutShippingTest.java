@@ -19,8 +19,9 @@ import static org.junit.Assert.assertTrue;
  * Created by Fitrah on 9/22/2016.
  */
 public class CheckoutShippingTest {
-    private StringBuffer verificationErrors = new StringBuffer();
     WebDriver driver;
+
+    private StringBuffer verificationErrors = new StringBuffer();
     WebElement countryOption;
     WebElement districtOption;
     CheckoutShippingPage checkoutShippingPage;

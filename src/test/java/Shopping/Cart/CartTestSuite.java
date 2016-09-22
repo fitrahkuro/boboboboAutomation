@@ -19,8 +19,8 @@ import java.net.URL;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        CheckoutCartTest.class,
+        //CheckoutCartTest.class,
         LoginCheckoutTest.class,
-        //CheckoutShippingTest.class
+        CheckoutShippingTest.class
         })
 public class CartTestSuite {}

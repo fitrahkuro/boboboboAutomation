@@ -32,10 +32,10 @@ public class CheckoutShippingPage {
     @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_address")
     private WebElement addressDetail;
 
-    @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_address_city")
+    @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_city")
     private WebElement addressCity;
 
-    @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_address_country")
+    @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_country")
     private WebElement addressCountry;
 
     @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_postalCode")
@@ -53,10 +53,10 @@ public class CheckoutShippingPage {
     @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_email")
     private WebElement addressEmail;
 
-    @FindBy(className = "phoenix_frontend_checkout_shipping_same_shipping")
+    @FindBy(id = "phoenix_frontend_checkout_shipping_same_shipping")
     private WebElement sameAs;
 
-    @FindBy(css = "input(type='submit')")
+    @FindBy(name = "input[type='submit']")
     private WebElement nextReview;
 
     //This is constructor
@@ -69,6 +69,7 @@ public class CheckoutShippingPage {
     // This method will put data to new address form
     public CheckoutShippingPage addNewAddress(String title, String fname, String lname, String address, String city,
                                               int country, String postalCode, String phone, String email) {
+
         // input address title, first name, last name, and detail
         addressTitle.clear();
         addressTitle.sendKeys(title);
