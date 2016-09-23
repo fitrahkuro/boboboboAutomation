@@ -33,6 +33,9 @@ public class CheckoutReviewTest {
 
     @Test
     public void checkoutReview() {
+
+        driver.get("https://www.bobobobo.com/en/checkout/review");
+
         // this method will click same as shipping address
         checkoutReviewPage.clickApplyPromo();
 

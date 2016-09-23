@@ -5,11 +5,14 @@ import Shopping.Cart.LoginCheckoutPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 
+//for dropdown menu
+import org.openqa.selenium.support.ui.Select;
 import java.util.concurrent.TimeUnit;
 
 
@@ -62,26 +65,33 @@ public class LoginCheckoutTest {
 
         int countryIdx = checkoutShippingPage.randomCountry();
         checkoutShippingPage.addNewAddress(title, fname, lname, address, city, countryIdx, postalCode, phone, email);
-        if (countryIdx == 0) {
-            districtIdx = checkoutShippingPage.randomDistrict();
-            checkoutShippingPage.addDistrictByIdx(districtIdx);
-            district = checkoutShippingPage.selectedDistrict;
-        }
-        else {
-            district = "Oklahoma";
-            checkoutShippingPage.addDistrictByInput(district);
-        }
+
         country = checkoutShippingPage.selectedCountry;
 
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+
+
+        //for select dropdown country
+        Select droplist = new Select(driver.findElement(By.id("phoenix_frontend_checkout_shipping_shippingAddress_country")));
+        droplist.selectByVisibleText("Indonesia");
+
+
+
+        //for select dropdown country
+        driver.findElement(By.id("phoenix_frontend_checkout_shipping_shippingAddress_district")).sendKeys("DKI JAKARTA");
+
 
         // this method will click same as shipping address
         checkoutShippingPage.clickSameAs();
 
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
 
         // this method will click next to review
         checkoutShippingPage.clickNextReview();
+
+
+
+
     }
 
     @After
