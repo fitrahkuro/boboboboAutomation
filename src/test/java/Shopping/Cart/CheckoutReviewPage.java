@@ -29,7 +29,8 @@ public class CheckoutReviewPage {
     @FindBy(id = "checkout_promo_code")
     private WebElement promoCode;
 
-    @FindBy(className = "checkout-apply-promocode")
+    //masih salah
+    @FindBy(className = "checkout-apply-promo-code")
     private WebElement applyPromo;
 
     //@FindBy(className = "checkout")
