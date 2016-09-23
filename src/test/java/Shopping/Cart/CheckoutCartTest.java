@@ -37,7 +37,7 @@ public class CheckoutCartTest {
         homepage = PageFactory.initElements(driver, Homepage.class);
         searching = PageFactory.initElements(driver, NonEventPage.class);
         item = PageFactory.initElements(driver, ItemDetailsPage.class);
-        //loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
+        loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
 
         ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women", "men", "living"));
         categoryIdx = (int) Math.floor(Math.random() * arrCategory.size());
@@ -135,19 +135,17 @@ public class CheckoutCartTest {
 
         //click proceed to checkout
         driver.findElement(By.id("cart-checkout-button")).click();
+
+        // for login
+        loginPage.doLogin("testing60@bobobobo.com", "temanbobo");
+        loginPage.clickLoginButton();
+        System.out.println("Successfully login");
+
+
     }
 
+    @After
+    public void tearDown() {
 
-
-    // for login
-    public void login() {
-            loginPage.doLogin("testing60@bobobobo.com", "temanbobo");
-            loginPage.clickLoginButton();
-            System.out.println("Successfully login");
-
-
-        }
-       // @After
-        //public void tearDown () {
-
-        }
+    }
+}
