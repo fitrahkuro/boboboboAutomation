@@ -23,17 +23,17 @@ public class CheckoutReviewPage {
     @FindBy(className = "checkout-item-quantity")
     private WebElement itemQty;
 
-    @FindBy(className = "subtotal-checkout-review text-right pr24")
+    @FindBy(className = "subtotal-checkout-review")
     private WebElement itemSub;
 
     @FindBy(id = "checkout_promo_code")
     private WebElement promoCode;
 
-    @FindBy(className = "checkout-apply-promocode pull-right pr24")
+    @FindBy(className = "checkout-apply-promocode")
     private WebElement applyPromo;
 
-    @FindBy(className = "text-right pr24")
-    private WebElement itemTotal;
+    //@FindBy(className = "checkout")
+    //private WebElement itemTotal;
 
     @FindBy(id = "checkout-review-button")
     private WebElement nextPayment;
@@ -43,7 +43,24 @@ public class CheckoutReviewPage {
     public CheckoutReviewPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-
     }
 
+    // This method will add promo code
+    public CheckoutReviewPage addNewPromo(String code) {
+        promoCode.click();
+        promoCode.sendKeys(code);
+        return this;
+    }
+
+    // This method will click Apply promo
+    public CheckoutReviewPage clickApplyPromo() {
+        applyPromo.click();
+        return this;
+    }
+
+    // This method will click Next to payment
+    public CheckoutReviewPage clickNextPayment() {
+        nextPayment.click();
+        return this;
+    }
 }
