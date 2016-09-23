@@ -2,6 +2,7 @@ package Shopping.Cart;
 
 import Shopping.Cart.CheckoutShippingPage;
 import Shopping.Cart.LoginCheckoutPage;
+import Shopping.Cart.CheckoutReviewPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginCheckoutTest {
     WebDriver driver;
     LoginCheckoutPage loginPage;
+    CheckoutReviewPage checkoutReviewPage;
 
 
     private StringBuffer verificationErrors = new StringBuffer();
@@ -46,6 +48,7 @@ public class LoginCheckoutTest {
     String email = "testing60@bobobobo.com";
 
 
+    String code = "TESTSELE";
 
 
     @Before
@@ -54,6 +57,7 @@ public class LoginCheckoutTest {
         loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
         checkoutShippingPage = PageFactory.initElements(driver, CheckoutShippingPage.class);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        checkoutReviewPage = PageFactory.initElements(driver, CheckoutReviewPage.class);
     }
 
     @Test
@@ -64,6 +68,8 @@ public class LoginCheckoutTest {
         System.out.println("Successfully login");
 
         int countryIdx = checkoutShippingPage.randomCountry();
+
+        //for adding address
         checkoutShippingPage.addNewAddress(title, fname, lname, address, city, countryIdx, postalCode, phone, email);
 
         country = checkoutShippingPage.selectedCountry;
@@ -89,9 +95,14 @@ public class LoginCheckoutTest {
         // this method will click next to review
         checkoutShippingPage.clickNextReview();
 
+        //for adding promo
+        checkoutReviewPage.addNewPromo(code);
 
+        // this method will click apply promo
+        checkoutReviewPage.clickApplyPromo();
 
-
+        // this method will click next to payment
+        checkoutReviewPage.clickNextPayment();
     }
 
     @After
