@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 /**
- * Created by bobobobo on 9/23/2016.
+ * Created by Fitrah on 9/23/2016.
  */
 
 public class CheckoutReviewPage {
@@ -26,10 +26,11 @@ public class CheckoutReviewPage {
     @FindBy(className = "subtotal-checkout-review")
     private WebElement itemSub;
 
+    // promo code box
     @FindBy(id = "checkout_promo_code")
     private WebElement promoCode;
 
-    //masih salah
+    //promo code apply button
     @FindBy(className = "checkout-apply-promo-code")
     private WebElement applyPromo;
 

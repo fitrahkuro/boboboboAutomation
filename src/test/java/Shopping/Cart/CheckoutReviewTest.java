@@ -36,11 +36,11 @@ public class CheckoutReviewTest {
 
         driver.get("https://www.bobobobo.com/en/checkout/review");
 
-        // this method will click same as shipping address
+        // this method will click apply promo
         checkoutReviewPage.clickApplyPromo();
 
 
-        // this method will click next to review
+        // this method will click next to payment
         checkoutReviewPage.clickNextPayment();
     }
 }
