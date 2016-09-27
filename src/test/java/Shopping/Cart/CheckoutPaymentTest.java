@@ -46,7 +46,7 @@ public class CheckoutPaymentTest {
         checkoutPaymentPage.addNewCc(name, number, ccv);
 
         //for select cc expiry month
-        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("  ");
+        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("1");
 
         //for select cc expiry year
         driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2020");

@@ -51,9 +51,9 @@ public class LoginCheckoutTest {
 
     String code = "TESTSELE";
 
-    String name = "";
-    String number = "";
-    String ccv = "";
+    String name = "test";
+    String number = "1234";
+    String ccv = "test";
     CheckoutPaymentPage checkoutPaymentPage;
 
     @Before
@@ -63,6 +63,8 @@ public class LoginCheckoutTest {
         checkoutShippingPage = PageFactory.initElements(driver, CheckoutShippingPage.class);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         checkoutReviewPage = PageFactory.initElements(driver, CheckoutReviewPage.class);
+        checkoutPaymentPage = PageFactory.initElements(driver, CheckoutPaymentPage.class);
+
     }
 
     @Test
@@ -108,11 +110,7 @@ public class LoginCheckoutTest {
 
         // this method will click next to payment
         checkoutReviewPage.clickNextPayment();
-    }
 
-
-    @Test
-    public void payment (){
 
 
         // this method will click cc option
@@ -122,10 +120,10 @@ public class LoginCheckoutTest {
         checkoutPaymentPage.addNewCc(name, number, ccv);
 
         //for select cc expiry month
-        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("");
+        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("1");
 
         //for select cc expiry year
-        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("");
+        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2020");
 
 
         // this method will click next to payment
