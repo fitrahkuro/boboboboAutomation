@@ -3,7 +3,6 @@ package Shopping.Cart;
 import Shopping.Cart.LoginCheckoutPage;
 import Shopping.NonEventPage;
 import UserManagement.Auth.Homepage;
-import UserManagement.Auth.LoginPage;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -39,21 +38,23 @@ public class CheckoutCartTest {
         item = PageFactory.initElements(driver, ItemDetailsPage.class);
         loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
 
-        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women", "men", "living"));
+
+        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women","men","living"));
         categoryIdx = (int) Math.floor(Math.random() * arrCategory.size());
 
         // Check to redirect page to selected category
         if (arrCategory.get(categoryIdx).equalsIgnoreCase("women")) {
             homepage.clickWomenCategory();
-        } else if (arrCategory.get(categoryIdx).equalsIgnoreCase("men")) {
+        }
+        else if (arrCategory.get(categoryIdx).equalsIgnoreCase("men")) {
             homepage.clickMenCategory();
-        } else if (arrCategory.get(categoryIdx).equalsIgnoreCase("living")) {
+        }
+        else if (arrCategory.get(categoryIdx).equalsIgnoreCase("living")) {
             homepage.clickLivingCategory();
         }
 
         searching.saleMenu();
     }
-
 
     @Test
     public void addCartShop() throws Exception {
@@ -64,34 +65,33 @@ public class CheckoutCartTest {
         int total = searching.getTotalResult();
         ArrayList<String> temp;
 
-
         // Looping for clicking an available item
         for (int i = 1; i <= total; i++) {
             temp = searching.getProductInfo(i);
             brand = temp.get(0);
             product = temp.get(1);
-            price = Integer.parseInt(temp.get(2).replaceFirst(".*?(\\d+)", "$1").replaceAll(",", ""));
+            price = Integer.parseInt(temp.get(2).replaceFirst(".*?(\\d+)", "$1").replaceAll(",",""));
             searching.clickItem(i);
 
             try {
                 assertTrue(driver.getTitle().contains("Sorry"));
                 continue;
-            } catch (Error e) {
+            }
+            catch (Error e) {
                 System.out.println("Page is valid");
                 break;
-
             }
         }
 
         // check item
         try {
             item.isItemMatched(brand, product, price);
-        } catch (Error e) {
+        }
+        catch (Error e) {
             System.out.println("Item's details are not matched");
             System.exit(1);
         }
         property = item.productProperty();
-
 
         // looping for property in each variety or property
         for (int j = 1; j <= property; j++) {
@@ -113,7 +113,8 @@ public class CheckoutCartTest {
             if (item.getQuantity() * price == totalPrice) {
                 System.out.println("Price is matched");
             }
-        } catch (Error e) {
+        }
+        catch (Error e) {
             System.out.println("Price is not matched");
             System.exit(1);
         }
@@ -121,7 +122,8 @@ public class CheckoutCartTest {
         // click add to cart button
         try {
             item.clickCartButton();
-        } catch (Error e) {
+        }
+        catch (Error e) {
             System.out.println("Add to Cart button can not be clicked");
             System.exit(1);
         }
