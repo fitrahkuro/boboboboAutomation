@@ -1,5 +1,6 @@
 package Shopping.Cart;
 
+import Shopping.Cart.CheckoutPaymentPage;
 import Shopping.Cart.CheckoutShippingPage;
 import Shopping.Cart.LoginCheckoutPage;
 import Shopping.Cart.CheckoutReviewPage;
@@ -50,6 +51,10 @@ public class LoginCheckoutTest {
 
     String code = "TESTSELE";
 
+    String name = "";
+    String number = "";
+    String ccv = "";
+    CheckoutPaymentPage checkoutPaymentPage;
 
     @Before
     public void setUp() {
@@ -103,6 +108,29 @@ public class LoginCheckoutTest {
 
         // this method will click next to payment
         checkoutReviewPage.clickNextPayment();
+    }
+
+
+    @Test
+    public void payment (){
+
+
+        // this method will click cc option
+        checkoutPaymentPage.clickCcOption();
+
+        //for adding CC info
+        checkoutPaymentPage.addNewCc(name, number, ccv);
+
+        //for select cc expiry month
+        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("");
+
+        //for select cc expiry year
+        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("");
+
+
+        // this method will click next to payment
+        checkoutPaymentPage.clickPayNow();
+
     }
 
     @After

@@ -36,9 +36,12 @@ public class CheckoutReviewTest {
 
         driver.get("https://www.bobobobo.com/en/checkout/review");
 
+
+        //for adding promo
+        checkoutReviewPage.addNewPromo(code);
+
         // this method will click apply promo
         checkoutReviewPage.clickApplyPromo();
-
 
         // this method will click next to payment
         checkoutReviewPage.clickNextPayment();

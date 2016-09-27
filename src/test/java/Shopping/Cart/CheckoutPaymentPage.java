@@ -78,7 +78,6 @@ public class CheckoutPaymentPage {
     }
 
 
-
     // This method will click Virtual Payment Option
     public CheckoutPaymentPage clickVirtualPayment () {
         virtualPayment.click();
