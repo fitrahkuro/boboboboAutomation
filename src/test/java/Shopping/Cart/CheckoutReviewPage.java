@@ -49,7 +49,7 @@ public class CheckoutReviewPage {
 
     // This method will add promo code
     public CheckoutReviewPage addNewPromo(String code) {
-        promoCode.click();
+        promoCode.clear();
         promoCode.sendKeys(code);
         return this;
     }

@@ -34,7 +34,7 @@ public class CheckoutPaymentPage {
     private WebElement ccYear;
 
     @FindBy (id = "phoenix_frontend_checkout_payment_payment_info_CC_security_code")
-    private WebElement ccCvv;
+    private WebElement ccCcv;
 
 
     @FindBy(id = "phoenix_frontend_checkout_payment_payment_identifier_0")
@@ -57,11 +57,27 @@ public class CheckoutPaymentPage {
 
     }
 
+
     // This method will click Credit Card Option
     public CheckoutPaymentPage clickCcOption() {
         ccOption.click();
         return this;
     }
+
+    // This method will put data Credit card info
+    public CheckoutPaymentPage addNewCc(String name, String number, String ccv ) {
+
+        // input address Credit card name , number and Ccv
+        ccName.clear();
+        ccName.sendKeys(name);
+        ccNumber.clear();
+        ccNumber.sendKeys(number);
+        ccCcv.clear();
+        ccCcv.sendKeys(ccv);
+        return this;
+    }
+
+
 
     // This method will click Virtual Payment Option
     public CheckoutPaymentPage clickVirtualPayment () {
