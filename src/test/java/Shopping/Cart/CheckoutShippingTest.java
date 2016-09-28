@@ -45,18 +45,20 @@ public class CheckoutShippingTest {
 
     @Before
     public void setUp() {
-        driver = new FirefoxDriver();
+        //driver = new FirefoxDriver();
         checkoutShippingPage = PageFactory.initElements(driver, CheckoutShippingPage.class);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
+
 
     @Test
     public void checkoutShipping() throws Exception {
-        driver.get("https://www.bobobobo.com/checkout/shipping");
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        //driver.get("https://www.bobobobo.com/checkout/shipping");
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 
-        int countryIdx = checkoutShippingPage.randomCountry();
+        //int countryIdx = checkoutShippingPage.randomCountry();
+        int countryIdx = 10;
         checkoutShippingPage.addNewAddress(title, fname, lname, address, city, countryIdx, postalCode, phone, email);
         if (countryIdx == 0) {
             districtIdx = checkoutShippingPage.randomDistrict();
