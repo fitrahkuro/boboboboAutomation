@@ -51,9 +51,17 @@ public class LoginCheckoutTest {
 
     String code = "TESTSELE";
 
-    String name = "Mochammad Sudharmono";
-    String number = "4556330029912707";
+    //for production
+    //String name = "Mochammad Sudharmono";
+    //String number = "4556330029912707";
+    //String ccv = "123";
+
+    //for pre-release
+    String name = "Test Fitrah";
+    String number = "4811111111111114";
     String ccv = "123";
+
+
     CheckoutPaymentPage checkoutPaymentPage;
 
     @Before
@@ -69,25 +77,23 @@ public class LoginCheckoutTest {
 
     @Test
     public void login() {
-        driver.get("https://www.bobobobo.com/user/login?r=/en/checkout/create");
+        driver.get("https://pre-release.bobobobo.com/user/login?r=/en/checkout/create");
+        //driver.get("https://bobobobo.com/user/login?r=/en/checkout/create");
         loginPage.doLogin("testing60@bobobobo.com", "temanbobo");
         loginPage.clickLoginButton();
         System.out.println("Successfully login");
 
         int countryIdx = checkoutShippingPage.randomCountry();
 
+        // SHIPPING PAGE
         //for adding address
         checkoutShippingPage.addNewAddress(title, fname, lname, address, city, countryIdx, postalCode, phone, email);
-
-        country = checkoutShippingPage.selectedCountry;
-
-
+        System.out.println("Successfully adding shipping address");
 
 
         //for select dropdown country
         Select droplist = new Select(driver.findElement(By.id("phoenix_frontend_checkout_shipping_shippingAddress_country")));
         droplist.selectByVisibleText("Indonesia");
-
 
 
         //for select dropdown country
@@ -98,37 +104,46 @@ public class LoginCheckoutTest {
         checkoutShippingPage.clickSameAs();
 
 
-
-        // this method will click next to review
+        // this method will click next to review button
         checkoutShippingPage.clickNextReview();
 
-        //for adding promo
+        // REVIEW PAGE
+
+        //for adding promo code
         checkoutReviewPage.addNewPromo(code);
 
-        // this method will click apply promo
+        // this method will click apply promo button
         checkoutReviewPage.clickApplyPromo();
 
-        // this method will click next to payment
+        // this method will click next to payment button
         checkoutReviewPage.clickNextPayment();
 
 
-
+        // PAYMENT PAGE
         // this method will click cc option
         checkoutPaymentPage.clickCcOption();
 
         //for adding CC info
         checkoutPaymentPage.addNewCc(name, number, ccv);
+        System.out.println("CC info add succesfully");
+
 
         //for select cc expiry month
-        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("5");
+        //driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("5");
+
+        // pre-release veritrans cc expiry month
+        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("1");
 
         //for select cc expiry year
-        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2017");
+        //driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2017");
+
+        //pre-release veritrans cc expiry month
+        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2020");
 
 
-        // this method will click next to payment
+        // this method will click next to payment button
         checkoutPaymentPage.clickPayNow();
-
+        System.out.println("payment succesfully done");
     }
 
     @After
