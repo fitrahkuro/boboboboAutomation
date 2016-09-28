@@ -37,6 +37,7 @@ public class LoginCheckoutTest {
     int columnPrev;
     int rowNext;
     int columnNext;
+
     String title = "Testing";
     String fname = "Fitrah";
     String lname = "Bobobobo";
@@ -85,35 +86,37 @@ public class LoginCheckoutTest {
 
         int countryIdx = checkoutShippingPage.randomCountry();
 
+
         // SHIPPING PAGE
         //for adding address
         checkoutShippingPage.addNewAddress(title, fname, lname, address, city, countryIdx, postalCode, phone, email);
         System.out.println("Successfully adding shipping address");
 
-
         //for select dropdown country
         Select droplist = new Select(driver.findElement(By.id("phoenix_frontend_checkout_shipping_shippingAddress_country")));
         droplist.selectByVisibleText("Indonesia");
 
-
         //for select dropdown country
         driver.findElement(By.id("phoenix_frontend_checkout_shipping_shippingAddress_district")).sendKeys("DKI JAKARTA");
-
 
         // this method will click same as shipping address
         checkoutShippingPage.clickSameAs();
 
-
         // this method will click next to review button
         checkoutShippingPage.clickNextReview();
 
+
         // REVIEW PAGE
+        //for change item quantity
+        driver.findElement(By.className("checkout-item-quantity")).sendKeys("2");
+        System.out.println("Quantity changed");
 
         //for adding promo code
         checkoutReviewPage.addNewPromo(code);
 
         // this method will click apply promo button
         checkoutReviewPage.clickApplyPromo();
+        System.out.println("Promo Code Added");
 
         // this method will click next to payment button
         checkoutReviewPage.clickNextPayment();
@@ -127,7 +130,6 @@ public class LoginCheckoutTest {
         checkoutPaymentPage.addNewCc(name, number, ccv);
         System.out.println("CC info add succesfully");
 
-
         //for select cc expiry month
         //driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("5");
 
@@ -139,7 +141,6 @@ public class LoginCheckoutTest {
 
         //pre-release veritrans cc expiry month
         driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2020");
-
 
         // this method will click next to payment button
         checkoutPaymentPage.clickPayNow();

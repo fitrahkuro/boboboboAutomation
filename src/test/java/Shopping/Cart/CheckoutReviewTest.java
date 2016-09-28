@@ -1,5 +1,6 @@
 package Shopping.Cart;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -36,6 +37,10 @@ public class CheckoutReviewTest {
 
         driver.get("https://www.bobobobo.com/en/checkout/review");
 
+
+        //for change item quantity
+        driver.findElement(By.className("checkout-item-quantity")).sendKeys("2");
+        System.out.println("Quantity changed");
 
         //for adding promo
         checkoutReviewPage.addNewPromo(code);
