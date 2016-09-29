@@ -23,6 +23,7 @@ public class CheckoutShippingPage {
     @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_title")
     private WebElement addressTitle;
 
+    //SHIPPING ADDRESS
     @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_firstName")
     private WebElement addressFName;
 
@@ -53,6 +54,39 @@ public class CheckoutShippingPage {
     @FindBy(id = "phoenix_frontend_checkout_shipping_shippingAddress_email")
     private WebElement addressEmail;
 
+    //BILLING ADDRESS
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_firstName")
+    private WebElement billingFName;
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_lastName")
+    private WebElement billingLName;
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_address")
+    private WebElement billingDetail;
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_city")
+    private WebElement billingCity;
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_country")
+    private WebElement billingCountry;
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_postalCode")
+    private WebElement billingPostalCode;
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_district")
+    private WebElement billingDistrict;
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_districtInternational")
+    private WebElement billingDistrictInt;
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_phoneNumber")
+    private WebElement billingPhone;
+
+    @FindBy(id = "phoenix_frontend_checkout_shipping_billingAddress_email")
+    private WebElement billingEmail;
+
+
     @FindBy(id = "phoenix_frontend_checkout_shipping_same_shipping")
     private WebElement sameAs;
 
@@ -66,7 +100,7 @@ public class CheckoutShippingPage {
     }
 
 
-    // This method will put data to new address form
+    // This method will put shipping address
     public CheckoutShippingPage addNewAddress(String title, String fname, String lname, String address, String city,
                                               int country, String postalCode, String phone, String email) {
 
@@ -137,7 +171,27 @@ public class CheckoutShippingPage {
         randomIdx = (int) Math.ceil(Math.random()* (districtOption.size() - 1 ));
         return randomIdx;
     }
-
+    // This method will put data to Billing address
+    public CheckoutShippingPage addNewBilling(String fname, String lname, String address, String city, String postalCode, String phone, String email) {
+        // input address title, first name, last name, and detail
+        billingFName.clear();
+        billingFName.sendKeys(fname);
+        billingLName.clear();
+        billingLName.sendKeys(lname);
+        billingDetail.clear();
+        billingDetail.sendKeys(address);
+        billingCity.clear();
+        billingCity.sendKeys(city);
+        // input postal code
+        billingPostalCode.clear();
+        billingPostalCode.sendKeys(postalCode);
+        // input phone number and email address
+        billingPhone.clear();
+        billingPhone.sendKeys(phone);
+        billingEmail.clear();
+        billingEmail.sendKeys(email);
+        return this;
+    }
     // This method will click Same as Shipping Address
     public CheckoutShippingPage clickSameAs() {
         sameAs.click();

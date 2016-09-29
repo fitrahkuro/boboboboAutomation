@@ -39,15 +39,15 @@ public class CheckoutCartTest {
         loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
 
 
-        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women"));
+        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women","men"));
         categoryIdx = (int) Math.floor(Math.random() * arrCategory.size());
 
         // Check to redirect page to selected category
         if (arrCategory.get(categoryIdx).equalsIgnoreCase("women")) {
             homepage.clickWomenCategory();
-        //}
-        //else if (arrCategory.get(categoryIdx).equalsIgnoreCase("men")) {
-            //homepage.clickMenCategory();
+        }
+        else if (arrCategory.get(categoryIdx).equalsIgnoreCase("men")) {
+            homepage.clickMenCategory();
         }
 
        // else if (arrCategory.get(categoryIdx).equalsIgnoreCase("living")) {

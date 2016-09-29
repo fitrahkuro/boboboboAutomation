@@ -46,9 +46,18 @@ public class LoginCheckoutTest {
     String country;
     String district;
     String postalCode = "12345";
-    String phone = "08123457890";
+    String phone = "08111339955";
     String email = "testing60@bobobobo.com";
 
+
+
+    String billingfname = "Fitrah";
+    String billinglname = "Anshari";
+    String billingaddress = "Jalan Gereja Theresia";
+    String billingcity = "Jakarta Pusat";
+    String billingpostalCode = "99999";
+    String billingphone = "08123457890";
+    String billingemail = "testing60@bobobobo.com";
 
     String code = "TESTSELE";
 
@@ -88,19 +97,25 @@ public class LoginCheckoutTest {
 
 
         // SHIPPING PAGE
-        //for adding address
+        //for adding shipping address
         checkoutShippingPage.addNewAddress(title, fname, lname, address, city, countryIdx, postalCode, phone, email);
-        System.out.println("Successfully adding shipping address");
-
-        //for select dropdown country
+        //for select dropdown country Shipping
         Select droplist = new Select(driver.findElement(By.id("phoenix_frontend_checkout_shipping_shippingAddress_country")));
         droplist.selectByVisibleText("Indonesia");
-
-        //for select dropdown country
+        //for select dropdown district Shipping
         driver.findElement(By.id("phoenix_frontend_checkout_shipping_shippingAddress_district")).sendKeys("DKI JAKARTA");
+        System.out.println("Successfully adding Shipping address");
+
+        //for adding Billing address
+        checkoutShippingPage.addNewBilling(billingfname, billinglname, billingaddress, billingcity, billingpostalCode, billingphone, billingemail);
+        //for select dropdown country Billing
+        driver.findElement(By.id("phoenix_frontend_checkout_shipping_billingAddress_country")).sendKeys("Indonesia");
+        //for select dropdown district Billing
+        driver.findElement(By.id("phoenix_frontend_checkout_shipping_billingAddress_district")).sendKeys("DEPOK");
+        System.out.println("Successfully adding Billing address");
 
         // this method will click same as shipping address
-        checkoutShippingPage.clickSameAs();
+        //checkoutShippingPage.clickSameAs();
 
         // this method will click next to review button
         checkoutShippingPage.clickNextReview();
@@ -108,7 +123,7 @@ public class LoginCheckoutTest {
 
         // REVIEW PAGE
         //for change item quantity
-        driver.findElement(By.className("checkout-item-quantity")).sendKeys("2");
+        driver.findElement(By.className("checkout-item-quantity")).sendKeys("1");
         System.out.println("Quantity changed");
 
         //for adding promo code
