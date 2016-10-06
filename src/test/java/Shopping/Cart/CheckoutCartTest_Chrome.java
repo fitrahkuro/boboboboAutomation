@@ -1,26 +1,27 @@
 package Shopping.Cart;
 
 
-
 import Shopping.NonEventPage;
 import UserManagement.Auth.Homepage;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 /**
- * Created by Prima on 8/11/2016.
+ * Created by bobobobo on 10/3/2016.
  */
-public class AddCartShopTest {
+public class CheckoutCartTest_chrome {
     WebDriver driver;
     Homepage homepage;
     NonEventPage searching;
@@ -31,29 +32,32 @@ public class AddCartShopTest {
     int price;
     LoginCheckoutPage loginPage;
 
+
     @Before
     public void setUp() {
-
-        driver = new FirefoxDriver();
+        // Optional, if not specified, WebDriver will search your path for chromedriver.
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\bobobobo\\Downloads\\chromedriver_win32\\chromedriver.exe");
+        driver = new ChromeDriver();
         homepage = PageFactory.initElements(driver, Homepage.class);
         searching = PageFactory.initElements(driver, NonEventPage.class);
         item = PageFactory.initElements(driver, ItemDetailsPage.class);
         loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
 
-        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women"));
+
+        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women", "men"));
         categoryIdx = (int) Math.floor(Math.random() * arrCategory.size());
 
         // Check to redirect page to selected category
         if (arrCategory.get(categoryIdx).equalsIgnoreCase("women")) {
             homepage.clickWomenCategory();
         }
-        //else if (arrCategory.get(categoryIdx).equalsIgnoreCase("men")) {
-            //homepage.clickMenCategory();
-        //}
-        //else if (arrCategory.get(categoryIdx).equalsIgnoreCase("living")) {
-            //homepage.clickLivingCategory();
-        //}
+        else if (arrCategory.get(categoryIdx).equalsIgnoreCase("men")) {
+            homepage.clickMenCategory();
+        }
 
+        // else if (arrCategory.get(categoryIdx).equalsIgnoreCase("living")) {
+        //homepage.clickLivingCategory();
+        //}
         searching.saleMenu();
     }
 
@@ -134,10 +138,27 @@ public class AddCartShopTest {
         System.out.println("Done");
 
 
+
+
+        // click cart button
+        driver.findElement(By.id("cart-counter")).click();
+
+        //click proceed to checkout
+        driver.findElement(By.id("cart-checkout-button")).click();
+
+        // for login
+        loginPage.doLogin("testing60@bobobobo.com", "temanbobo");
+        loginPage.clickLoginButton();
+        System.out.println("Successfully login");
+
+        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+
     }
 
     @After
-    public void tearDown() {
-
+    public void tearDown() {driver.quit();
     }
 }
+
+
+

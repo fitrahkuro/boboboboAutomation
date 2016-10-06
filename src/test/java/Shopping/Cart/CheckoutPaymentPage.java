@@ -50,6 +50,8 @@ public class CheckoutPaymentPage {
     private WebElement payNow;
 
 
+
+
     //This is constructor
     public CheckoutPaymentPage(WebDriver driver) {
         this.driver = driver;

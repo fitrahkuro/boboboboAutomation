@@ -17,11 +17,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import java.util.concurrent.TimeUnit;
 
-
 /**
- * Created by fitrah on 9/21/2016.
+ * Created by bobobobo on 10/4/2016.
  */
-public class LoginCheckoutTest {
+
+public class LoginCheckoutTest_chrome {
     WebDriver driver;
     LoginCheckoutPage loginPage;
     CheckoutReviewPage checkoutReviewPage;
@@ -76,8 +76,8 @@ public class LoginCheckoutTest {
 
     @Before
     public void setUp() {
-        driver = new FirefoxDriver();
-
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\bobobobo\\Downloads\\chromedriver_win32\\chromedriver.exe");
+        driver = new ChromeDriver();
         loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
         checkoutShippingPage = PageFactory.initElements(driver, CheckoutShippingPage.class);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -168,3 +168,5 @@ public class LoginCheckoutTest {
     public void tearDown(){
     }
 }
+
+

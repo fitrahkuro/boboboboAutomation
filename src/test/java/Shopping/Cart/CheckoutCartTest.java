@@ -1,6 +1,6 @@
 package Shopping.Cart;
 
-import Shopping.Cart.LoginCheckoutPage;
+
 import Shopping.NonEventPage;
 import UserManagement.Auth.Homepage;
 import org.junit.*;
@@ -11,9 +11,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 /**
  * Created by fitrah on 9/20/2016.
  */
@@ -32,6 +36,7 @@ public class CheckoutCartTest {
 
     @Before
     public void setUp() {
+        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\bobobobo\\Downloads\\chromedriver_win32\\chromedriver.exe");
         driver = new FirefoxDriver();
         homepage = PageFactory.initElements(driver, Homepage.class);
         searching = PageFactory.initElements(driver, NonEventPage.class);
@@ -39,7 +44,7 @@ public class CheckoutCartTest {
         loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
 
 
-        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women","men"));
+        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women", "men"));
         categoryIdx = (int) Math.floor(Math.random() * arrCategory.size());
 
         // Check to redirect page to selected category
@@ -132,6 +137,7 @@ public class CheckoutCartTest {
 
         System.out.println("Done");
 
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         // click cart button
         driver.findElement(By.id("cart-counter")).click();
 

@@ -1,14 +1,13 @@
 package Shopping.Cart;
 
-
-
+import Shopping.Cart.LoginCheckoutPage;
 import Shopping.NonEventPage;
 import UserManagement.Auth.Homepage;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,10 +16,13 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 /**
- * Created by Prima on 8/11/2016.
+ * Created by fitrah on 9/20/2016.
  */
-public class AddCartShopTest {
+
+
+public class SafariTest {
     WebDriver driver;
     Homepage homepage;
     NonEventPage searching;
@@ -34,24 +36,24 @@ public class AddCartShopTest {
     @Before
     public void setUp() {
 
-        driver = new FirefoxDriver();
+        driver = new SafariDriver();
         homepage = PageFactory.initElements(driver, Homepage.class);
         searching = PageFactory.initElements(driver, NonEventPage.class);
         item = PageFactory.initElements(driver, ItemDetailsPage.class);
         loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
 
-        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women"));
+        ArrayList<String> arrCategory = new ArrayList(Arrays.asList("women", "men"));
         categoryIdx = (int) Math.floor(Math.random() * arrCategory.size());
 
         // Check to redirect page to selected category
         if (arrCategory.get(categoryIdx).equalsIgnoreCase("women")) {
             homepage.clickWomenCategory();
         }
-        //else if (arrCategory.get(categoryIdx).equalsIgnoreCase("men")) {
-            //homepage.clickMenCategory();
-        //}
+        else if (arrCategory.get(categoryIdx).equalsIgnoreCase("men")) {
+        homepage.clickMenCategory();
+        }
         //else if (arrCategory.get(categoryIdx).equalsIgnoreCase("living")) {
-            //homepage.clickLivingCategory();
+        //homepage.clickLivingCategory();
         //}
 
         searching.saleMenu();
