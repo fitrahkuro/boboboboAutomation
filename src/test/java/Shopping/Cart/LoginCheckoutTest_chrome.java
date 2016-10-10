@@ -25,7 +25,7 @@ public class LoginCheckoutTest_chrome {
     WebDriver driver;
     LoginCheckoutPage loginPage;
     CheckoutReviewPage checkoutReviewPage;
-
+    CheckoutPaymentPage checkoutPaymentPage;
 
     private StringBuffer verificationErrors = new StringBuffer();
     WebElement countryOption;
@@ -71,8 +71,10 @@ public class LoginCheckoutTest_chrome {
     String number = "4811111111111114";
     String ccv = "123";
 
+    // adding 3ds password
+    String pass = "112233";
 
-    CheckoutPaymentPage checkoutPaymentPage;
+
 
     @Before
     public void setUp() {
@@ -148,13 +150,10 @@ public class LoginCheckoutTest_chrome {
 
         //for select cc expiry month
         //driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("5");
-
         // pre-release veritrans cc expiry month
         driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("1");
-
         //for select cc expiry year
         //driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2017");
-
         //pre-release veritrans cc expiry year
         driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2020");
         System.out.println("CC info add succesfully");
@@ -162,6 +161,18 @@ public class LoginCheckoutTest_chrome {
         // this method will click next to payment button
         checkoutPaymentPage.clickPayNow();
         System.out.println("payment succesfully done");
+
+
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+
+
+        //this method will filling 3ds number info
+        checkoutPaymentPage.addNewPay(pass);
+
+        // this method will click Ok in 3ds page
+        checkoutPaymentPage.clickPayOk();
+        System.out.println("payment succesfully done");
+
     }
 
     @After

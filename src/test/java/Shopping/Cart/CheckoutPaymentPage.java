@@ -49,7 +49,11 @@ public class CheckoutPaymentPage {
     @FindBy(css = "input[type='submit']")
     private WebElement payNow;
 
+    @FindBy(id = "PaRes")
+    private WebElement payPass;
 
+    @FindBy(css = "input[type='submit']")
+    private WebElement payOk;
 
 
     //This is constructor
@@ -79,7 +83,6 @@ public class CheckoutPaymentPage {
         return this;
     }
 
-
     // This method will click Virtual Payment Option
     public CheckoutPaymentPage clickVirtualPayment () {
         virtualPayment.click();
@@ -95,6 +98,21 @@ public class CheckoutPaymentPage {
     // This method will click Pay Now
     public CheckoutPaymentPage clickPayNow() {
         payNow.click();
+        return this;
+    }
+
+    // This method will put 3ds data
+    public CheckoutPaymentPage addNewPay(String pass) {
+
+        // input 3ds password
+        payPass.clear();
+        payPass.sendKeys(pass);
+        return this;
+    }
+
+    // This method will click OK in 3ds screen
+    public CheckoutPaymentPage clickPayOk() {
+        payOk.click();
         return this;
     }
 }
