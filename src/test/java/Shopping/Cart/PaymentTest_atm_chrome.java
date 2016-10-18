@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 //for dropdown menu
@@ -18,10 +17,11 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by bobobobo on 10/4/2016.
+ * Created by Fitrah on 10/12/2016.
  */
+public class PaymentTest_atm_chrome {
 
-public class LoginCheckoutTest_chrome {
+
     WebDriver driver;
     LoginCheckoutPage loginPage;
     CheckoutReviewPage checkoutReviewPage;
@@ -50,7 +50,6 @@ public class LoginCheckoutTest_chrome {
     String email = "testing60@bobobobo.com";
 
 
-
     String billingfname = "Fitrah";
     String billinglname = "Anshari";
     String billingaddress = "Jalan Gereja Theresia";
@@ -60,20 +59,6 @@ public class LoginCheckoutTest_chrome {
     String billingemail = "testing60@bobobobo.com";
 
     String code = "TESTSELE";
-
-    //for production
-    //String name = "Mochammad Sudharmono";
-    //String number = "4556330029912707";
-    //String ccv = "123";
-
-    //for pre-release
-    String name = "Test Fitrah";
-    String number = "4811111111111114";
-    String ccv = "123";
-
-    // adding 3ds password
-    String pass = "112233";
-
 
 
     @Before
@@ -141,43 +126,21 @@ public class LoginCheckoutTest_chrome {
 
 
         // PAYMENT PAGE
-        // this method will click cc option
-        checkoutPaymentPage.clickCcOption();
 
-        //for adding CC info
-        checkoutPaymentPage.addNewCc(name , number, ccv);
+        //this method will click bank transfer
+        checkoutPaymentPage.clickBankTransfer();
+        System.out.println("Bank Transfer Selected");
 
 
-        //for select cc expiry month
-        //driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("5");
-        // pre-release veritrans cc expiry month
-        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_month")).sendKeys("1");
-        //for select cc expiry year
-        //driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2017");
-        //pre-release veritrans cc expiry year
-        driver.findElement(By.id("phoenix_frontend_checkout_payment_payment_info_CC_expiry_year")).sendKeys("2020");
-        System.out.println("CC info add succesfully");
-
-        // this method will click next to payment button
+        //this method will click next to payment button
         checkoutPaymentPage.clickPayNow();
         System.out.println("payment succesfully done");
-
-
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-
-
-        //this method will filling 3ds number info
-        checkoutPaymentPage.addNewPay(pass);
-
-        // this method will click Ok in 3ds page
-        checkoutPaymentPage.clickPayOk();
-        System.out.println("payment succesfully done");
-
     }
 
-    @After
-    public void tearDown(){
+        @After
+        public void tearDown () {
+        }
     }
-}
+
 
 

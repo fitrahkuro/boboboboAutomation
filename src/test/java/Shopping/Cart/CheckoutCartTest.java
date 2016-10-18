@@ -36,7 +36,6 @@ public class CheckoutCartTest {
 
     @Before
     public void setUp() {
-        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\bobobobo\\Downloads\\chromedriver_win32\\chromedriver.exe");
         driver = new FirefoxDriver();
         homepage = PageFactory.initElements(driver, Homepage.class);
         searching = PageFactory.initElements(driver, NonEventPage.class);
@@ -153,7 +152,7 @@ public class CheckoutCartTest {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() {driver.quit();
 
     }
 }

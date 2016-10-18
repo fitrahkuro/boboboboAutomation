@@ -13,9 +13,11 @@ import java.net.URL;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 
-        CheckoutCartTest.class,
-        LoginCheckoutTest.class,
         CheckoutCartTest_chrome.class,
-        LoginCheckoutTest_chrome.class
+        PaymentTest_atm_chrome.class,
+        CheckoutCartTest_chrome.class,
+        PaymentTest_cc_chrome.class,
+        CheckoutCartTest_chrome.class,
+        PaymentTest_va_chrome.class
         })
 public class CartTestSuite {}

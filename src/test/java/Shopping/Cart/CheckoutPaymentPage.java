@@ -49,11 +49,11 @@ public class CheckoutPaymentPage {
     @FindBy(css = "input[type='submit']")
     private WebElement payNow;
 
-    @FindBy(id = "PaRes")
-    private WebElement payPass;
+    //@FindBy(id = "PaRes")
+    //private WebElement payPass;
 
-    @FindBy(css = "input[type='submit']")
-    private WebElement payOk;
+    //@FindBy(className = "test")
+    //private WebElement payOk;
 
 
     //This is constructor
@@ -102,17 +102,15 @@ public class CheckoutPaymentPage {
     }
 
     // This method will put 3ds data
-    public CheckoutPaymentPage addNewPay(String pass) {
-
-        // input 3ds password
-        payPass.clear();
-        payPass.sendKeys(pass);
-        return this;
-    }
+    //public CheckoutPaymentPage addNewPay(String pass) {
+        //payPass.clear();
+        //payPass.sendKeys(pass);
+        //return this;
+    //}
 
     // This method will click OK in 3ds screen
-    public CheckoutPaymentPage clickPayOk() {
-        payOk.click();
-        return this;
-    }
+    //public CheckoutPaymentPage clickPayOk() {
+        //payOk.click();
+        //return this;
+    //}
 }
