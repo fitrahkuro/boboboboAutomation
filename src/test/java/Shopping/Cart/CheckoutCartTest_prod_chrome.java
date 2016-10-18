@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import Shopping.Cart.ItemDetailsPage;
 
@@ -41,7 +42,8 @@ public class CheckoutCartTest_prod_chrome {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\bobobobo\\Downloads\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://www.bobobobo.com/product/riris-testing/testing-riris");
-        searching = PageFactory.initElements(driver, NonEventPage.class);
+        item = PageFactory.initElements(driver, ItemDetailsPage.class);
+        loginPage = PageFactory.initElements(driver, LoginCheckoutPage.class);
 
     }
 
@@ -51,15 +53,15 @@ public class CheckoutCartTest_prod_chrome {
         driver.findElement(By.name("varieties[1]")).sendKeys("S");
         driver.findElement(By.name("varieties[2]")).sendKeys("Butter");
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(5,TimeUnit.SECONDS);
 
+        driver.manage().timeouts().setScriptTimeout(5,TimeUnit.SECONDS);
 
         // This method will automatically get quantity
         //public int getQuantity() {
             //Select selectQty = new Select(stockQty);
             //String qty = selectQty.getFirstSelectedOption().getText();
             //return Integer.parseInt(qty);
-
 
         driver.findElement(By.className("stock-quantity-select")).sendKeys("2");
 
